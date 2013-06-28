@@ -5,27 +5,27 @@ public class Player {
 	private int dinoType = 0;
 	
 	private boolean facingRight = true;
-	private long xPosition;
-	private long yPosition;
+	private double xPosition;
+	private double yPosition;
 	
 	private final long speed = 5;
 	
 	public Player(int dinoType, 
 				boolean facingRight,
-				long xPosition,
-				long yPosition){
+				double xPosition,
+				double yPosition){
 		this.facingRight = facingRight;
 		this.dinoType = dinoType;
 		this.xPosition = xPosition;
 		this.yPosition = yPosition;
 	}
 	
-	public void moveRight(){
-		xPosition += speed;
+	public void moveRight(double deltaTime){
+		xPosition += speed*deltaTime;
 	}
 	
-	public void moveLeft(){
-		xPosition -= speed;
+	public void moveLeft(double deltaTime){
+		xPosition -= speed*deltaTime;
 	}
 	
 	public void flipPlayer(){
