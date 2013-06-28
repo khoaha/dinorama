@@ -54,19 +54,19 @@ public class Player {
 	}
 	
 	//For attacks, getPosition() then add (for right) say 50 pixels ahead or for left 50 pixels behind
-	public PlayerActions attackHigh(){
-		return PlayerActions.HIGHATTACK;
+	public PlayerState attackHigh(){
+		return PlayerState.HIGHATTACK;
 	}
 	
-	public PlayerActions attackLow(){
-		return PlayerActions.LOWATTACK;
+	public PlayerState attackLow(){
+		return PlayerState.LOWATTACK;
 	}
 	
-	public PlayerActions blockHigh(){
-		return PlayerActions.HIGHBLOCK;
+	public PlayerState blockHigh(){
+		return PlayerState.HIGHBLOCK;
 	}
 	
-	public PlayerActions blockLow(){
-		return PlayerActions.LOWBLOCK;
+	public PlayerState blockLow(){
+		return PlayerState.LOWBLOCK;
 	}
 }

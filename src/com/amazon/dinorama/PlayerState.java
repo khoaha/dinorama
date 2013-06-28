@@ -1,6 +1,6 @@
 package com.amazon.dinorama;
 
-public enum PlayerActions {
+public enum PlayerState {
 	HIGHATTACK,
 	LOWATTACK,
 	HIGHBLOCK,
