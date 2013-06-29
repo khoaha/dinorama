@@ -16,6 +16,7 @@ public class DisplayableObject {
 		this.originY = originY;
 		this.scaleX = 1;
 		this.scaleY = 1;
+		this.res = res;
 	}
 	
 	public void setImageDisplayed(Bitmap bitmap){
@@ -32,6 +33,14 @@ public class DisplayableObject {
 	
 	public int getY(){
 		return originY;
+	}
+	
+	public double getScaleX(){
+		return scaleX;
+	}
+	
+	public double getScaleY(){
+		return scaleY;
 	}
 	
 	public void update(){}
