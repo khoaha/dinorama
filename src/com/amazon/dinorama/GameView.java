@@ -74,7 +74,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public void init() {				
 		player = new Player(res, 0, 0);
 		enemy = new Player(res, 1000, 0);
-		enemy.changeDinoType((int)(Math.random()*4)); //randomize enemy color
+		enemy.changeDinoType((int)((Math.random()*4)+1)); //randomize enemy color
 		ai = new AIManager(player, enemy);
 		
 		gameLogic = new GameLogic(player, enemy);

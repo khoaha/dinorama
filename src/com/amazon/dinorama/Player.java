@@ -9,34 +9,83 @@ import android.graphics.BitmapFactory;
 
 public class Player extends DisplayableObject {
 	//Images
-	private HashMap<Integer, ArrayList<Bitmap>> playerImages;
+	private ArrayList<Bitmap> playerImages;
 	
 	private final int boundary = 96;
 	
 	private boolean hitting = false;
 	
 	private void initImageMap(){
-		playerImages = new HashMap<Integer, ArrayList<Bitmap>>();
-		Bitmap idle, step1, step2, hA1, hA2, lA1, lA2, hB, lB;
+		playerImages = new ArrayList<Bitmap>();
+		Bitmap idle, step1, step2, hA1, hA2, lA1, lA2;
+		
+		System.out.println("d:"+dinoType);
 		if(dinoType == 1){
-			playerImages.put(Integer.valueOf(1), new ArrayList<Bitmap>());
-			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1);
-			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2);
-			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3);
-			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4);
-			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5);
-			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6);
-			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7);
+			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1_pink);
+			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6_pink);
+			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7_pink);
+			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2_pink);
+			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3_pink);
+			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4_pink);
+			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5_pink);			
 			
-			playerImages.get(dinoType).add(idle);
-			playerImages.get(dinoType).add(hA1);
-			playerImages.get(dinoType).add(hA2);
-			playerImages.get(dinoType).add(lA1);
-			playerImages.get(dinoType).add(lA2);
-			playerImages.get(dinoType).add(step1);
-			playerImages.get(dinoType).add(step2);
+			playerImages.add(idle);
+			playerImages.add(step1);
+			playerImages.add(step2);
+			playerImages.add(hA1); 
+			playerImages.add(hA2);
+			playerImages.add(lA1);
+			playerImages.add(lA2);
+
+		}else if(dinoType == 2){
+			playerImages = new ArrayList<Bitmap>();
+			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1_orange);
+			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6_orange);
+			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7_orange);
+			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2_orange);
+			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3_orange);
+			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4_orange);
+			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5_orange);
 			
-			//Add Blocking
+			playerImages.add(idle);
+			playerImages.add(step1);
+			playerImages.add(step2);
+			playerImages.add(hA1);
+			playerImages.add(hA2);
+			playerImages.add(lA1);
+			playerImages.add(lA2);
+		}else if(dinoType == 3){
+			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1_green);
+			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6_green);
+			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7_green);
+			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2_green);
+			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3_green);
+			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4_green);
+			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5_green);
+			
+			playerImages.add(idle);
+			playerImages.add(step1);
+			playerImages.add(step2);
+			playerImages.add(hA1);
+			playerImages.add(hA2);
+			playerImages.add(lA1);
+			playerImages.add(lA2);
+		}else if(dinoType == 4){
+			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1_blue);
+			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6_blue);
+			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7_blue);
+			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2_blue);
+			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3_blue);
+			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4_blue);
+			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5_blue);
+			
+			playerImages.add(idle);
+			playerImages.add(step1);
+			playerImages.add(step2);
+			playerImages.add(hA1);
+			playerImages.add(hA2);
+			playerImages.add(lA1);
+			playerImages.add(lA2);
 		}
 		
 	}
@@ -65,19 +114,16 @@ public class Player extends DisplayableObject {
 	
 	private void idle(){
 		hitting = false;
-		ArrayList<Bitmap> images = playerImages.get(dinoType);
-		setImageDisplayed(images.get(0));
+		setImageDisplayed(playerImages.get(0));
 		stateCounter = 0;
 	}
 		
 	private void step(){
-		hitting = false;
-		ArrayList<Bitmap> images = playerImages.get(dinoType);
-		
+		hitting = false;		
 		if((stateCounter >= 0) && (stateCounter < 19)){
-			setImageDisplayed(images.get(5));
+			setImageDisplayed(playerImages.get(1));
 		}else if((stateCounter >= 19) && (stateCounter < 38)){
-			setImageDisplayed(images.get(6));
+			setImageDisplayed(playerImages.get(2));
 		}else{
 			stateCounter = 0;
 		}
@@ -98,16 +144,15 @@ public class Player extends DisplayableObject {
 	
 	private void attackingHigh(){
 		hitting = (stateCounter == 5);
-		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if((stateCounter >= 0) && (stateCounter < 5)){
-			setImageDisplayed(images.get(1));
+			setImageDisplayed(playerImages.get(3));
 		}else if((stateCounter >= 5) && (stateCounter < 20)){
-			setImageDisplayed(images.get(2));
+			setImageDisplayed(playerImages.get(4));
 		}else if((stateCounter >= 20) && (stateCounter < 25)){
-			setImageDisplayed(images.get(1));
+			setImageDisplayed(playerImages.get(3));
 		}else{
-			setImageDisplayed(images.get(0));
+			setImageDisplayed(playerImages.get(0));
 			attackComplete = true;
 			stateCounter = 0;
 			currentState = PlayerState.IDLE;
@@ -116,16 +161,15 @@ public class Player extends DisplayableObject {
 	
 	private void attackingLow(){
 		hitting = (stateCounter == 5);
-		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if((stateCounter >= 0) && (stateCounter < 5)){
-			setImageDisplayed(images.get(3));
+			setImageDisplayed(playerImages.get(5));
 		}else if((stateCounter >= 5) && (stateCounter < 20)){
-			setImageDisplayed(images.get(4));
+			setImageDisplayed(playerImages.get(6));
 		}else if((stateCounter >= 20) && (stateCounter < 25)){
-			setImageDisplayed(images.get(3));
+			setImageDisplayed(playerImages.get(5));
 		}else{
-			setImageDisplayed(images.get(0));
+			setImageDisplayed(playerImages.get(0));
 			attackComplete = true;
 			stateCounter = 0;
 			currentState = PlayerState.IDLE;
