@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -21,7 +22,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	private Canvas canvas;
 	
-	private ArrayList<DisplayableObject> objects = new ArrayList<DisplayableObject>();
+	private ArrayList<DisplayableObject> objects = new ArrayList<DisplayableObject>(); // drawn in order
 	private TouchButton[] buttons = new TouchButton[6];
 	
 	public GameView(Context context) {
@@ -43,29 +44,41 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	public void createButtons() {
-		objects.add(new TouchButton(res, 0, 0, TouchButton.TouchButtonDirection.LO_ATK));
-		objects.add(new TouchButton(res, 64, 0, TouchButton.TouchButtonDirection.LO_BLK));
-		objects.add(new TouchButton(res, 128, 0, TouchButton.TouchButtonDirection.RIGHT));
-		objects.add(new TouchButton(res, 0, 64, TouchButton.TouchButtonDirection.HI_ATK));
-		objects.add(new TouchButton(res, 64, 64, TouchButton.TouchButtonDirection.HI_BLK));
-		objects.add(new TouchButton(res, 128, 64, TouchButton.TouchButtonDirection.LEFT));
+		buttons[0] = new TouchButton(res, 0, 0, TouchButton.TouchButtonDirection.HI_ATK);
+		buttons[1] = new TouchButton(res, 128, 0, TouchButton.TouchButtonDirection.HI_BLK);
+		buttons[2] = new TouchButton(res, 256, 0, TouchButton.TouchButtonDirection.LEFT);
+		buttons[3] = new TouchButton(res, 0, 128, TouchButton.TouchButtonDirection.LO_ATK);
+		buttons[4] = new TouchButton(res, 128, 128, TouchButton.TouchButtonDirection.LO_BLK);
+		buttons[5] = new TouchButton(res, 256, 128, TouchButton.TouchButtonDirection.RIGHT);
 	}
 	
 	public void init() {
+		synchronized(buttons) {
+			createButtons();
+		}
 		synchronized(objects) {
 			for (int i=0; i<100; i++)
 				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
 		}
+		
 	}
 	
-	public void render(Canvas canvas) {
+	public void activate(boolean on) {
+		thread.setRunning(on);
+	}
+	
+	public void render(Canvas canvas) {	
 		// clear canvas
 		canvas.drawColor(Color.BLACK);
 		
 		// draw everything
 		synchronized(objects) {
 			for (DisplayableObject o : objects)
-				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), new Paint());
+				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
+		}
+		synchronized(buttons) {
+			for (TouchButton o : buttons)
+				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
 		}
 	}
 
@@ -102,6 +115,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		double x = event.getX();
 		double y = event.getY();
+		for (TouchButton b : buttons)
+			if (b.hit(x, y))
+				System.out.println(b);
 		return true;
 	}
 }
