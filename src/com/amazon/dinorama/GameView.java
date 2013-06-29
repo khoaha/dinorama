@@ -24,6 +24,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	private ArrayList<DisplayableObject> objects = new ArrayList<DisplayableObject>(); // drawn in order
 	private TouchButton[] buttons = new TouchButton[6];
+	private Player player = null;
 	
 	public GameView(Context context) {
 		super(context);
@@ -53,13 +54,15 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	public void init() {
+		player = new Player(1, res, 0, 0);
+		objects.add(player);
 		synchronized(buttons) {
 			createButtons();
 		}
-		synchronized(objects) {
-			for (int i=0; i<100; i++)
-				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
-		}
+//		synchronized(objects) {
+//			for (int i=0; i<100; i++)
+//				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
+//		}
 		
 	}
 	
@@ -76,10 +79,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			for (DisplayableObject o : objects)
 				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
 		}
-		synchronized(buttons) {
-			for (TouchButton o : buttons)
-				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
-		}
+//		synchronized(buttons) {
+//			for (TouchButton o : buttons) {
+//				System.err.println("!!! "+o.getX()+" , "+o.getY());
+//				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
+//			}
+//		}
 	}
 
 	public void update() {
@@ -116,8 +121,13 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		double x = event.getX();
 		double y = event.getY();
 		for (TouchButton b : buttons)
-			if (b.hit(x, y))
+			if (b.hit(x, y)) {
+				if (b.type == TouchButton.TouchButtonDirection.RIGHT)
+					player.moveRight();
+				if (b.type == TouchButton.TouchButtonDirection.LEFT)
+					player.moveLeft();
 				System.out.println(b);
+			}
 		return true;
 	}
 }

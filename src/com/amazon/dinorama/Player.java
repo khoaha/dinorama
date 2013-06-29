@@ -57,7 +57,7 @@ public class Player extends DisplayableObject {
 	
 	private void idle(){
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
-		setImageDisplayed(images.get(1));
+		setImageDisplayed(images.get(0));
 		stateCounter = 0;
 	}
 	
@@ -66,9 +66,9 @@ public class Player extends DisplayableObject {
 		
 		if(stateCounter == 0){
 			setImageDisplayed(images.get(5));
-		}else if(stateCounter == 10){
+		}else if(stateCounter == 5){
 			setImageDisplayed(images.get(6));
-		}else if(stateCounter == 20){
+		}else if(stateCounter == 10){
 			stateCounter = 0;
 			currentState = PlayerState.IDLE;
 		}
@@ -80,7 +80,7 @@ public class Player extends DisplayableObject {
 	}
 	private void movementLeft(){
 		step();
-		originY -= speed;
+		originX -= speed;
 	}
 	
 	public void update(){
@@ -100,6 +100,7 @@ public class Player extends DisplayableObject {
 		}else if(currentState == PlayerState.HIGHBLOCK){
 			
 		}
+		
 	}	
 	
 	public void moveRight(){
