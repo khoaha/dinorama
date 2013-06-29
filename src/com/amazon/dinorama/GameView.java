@@ -135,6 +135,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 						player.moveRight();
 					if (b.type == TouchButton.TouchButtonDirection.LEFT)
 						player.moveLeft();
+					if (b.type == TouchButton.TouchButtonDirection.HI_ATK)
+						player.attackHigh();
+					if (b.type == TouchButton.TouchButtonDirection.LO_ATK)
+						player.attackLow();
 //					System.out.println(b);
 				}
 			return true;
