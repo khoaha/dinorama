@@ -2,6 +2,7 @@ package com.amazon.dinorama;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.BitmapFactory;
@@ -32,7 +33,9 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private GameLogic gameLogic;
 	private AIManager ai;
 	
-	public GameView(Context context) {
+	private GameActivity creator;
+	
+	public GameView(GameActivity context) {
 		super(context);
 		sh = getHolder();
 		sh.addCallback(this);
@@ -40,6 +43,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		paint.setStyle(Style.FILL);
 		
 		res = getResources();
+		
+		creator = context;
 		
 		// adding the callback (this) to the surface holder to intercept events
 		getHolder().addCallback(this);
@@ -118,7 +123,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void update() {
-		if(gameLogic != null) gameLogic.update();
+		if(gameLogic != null)
+			gameLogic.update();
 		
 		// update ai
 		if (ai != null)
@@ -129,6 +135,17 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			for (DisplayableObject o : objects)
 				o.update();
 		}
+		
+		int win = checkWin();
+		if (win != 0)
+			creator.triggerEnd(win);
+	}
+	
+	protected int checkWin() {
+		int tmp = GlobalVariables.gameResult;
+		if (tmp != 0)
+			GlobalVariables.gameResult = 0;
+		return tmp;
 	}
 	
 	public void surfaceCreated(SurfaceHolder holder) {

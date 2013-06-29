@@ -23,6 +23,10 @@ public class GameActivity extends Activity {
 
     }
     
+    public void triggerEnd(int win) {
+    	
+    }
+    
     @Override
     protected void onPause() {
     	super.onPause();
