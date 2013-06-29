@@ -78,8 +78,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		
 		// draw everything
 		synchronized(objects) {
-			for (DisplayableObject o : objects)
+			for (DisplayableObject o : objects) {
+				canvas.save();
+				canvas.scale((float) o.getScaleX(), (float) o.getScaleY(), o.getX(), o.getY());
 				canvas.drawBitmap(o.getImageDisplayed(), o.getX(), o.getY(), null);
+				canvas.restore();
+			}
 		}
 //		synchronized(buttons) {
 //			for (TouchButton o : buttons) {
