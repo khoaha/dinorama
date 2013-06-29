@@ -154,12 +154,14 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 //					System.out.println(b);
 				}
 			return true;
-		} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+		} else if (event.getAction() == android.view.MotionEvent.ACTION_POINTER_UP || 
+				event.getAction() == android.view.MotionEvent.ACTION_UP) {
 			player.forceIdle();
 			for (TouchButton o : buttons) {
-				o.release();
+				if (o.hit(x, y))
+					o.release();
 			}
-//			System.out.println("ACTION UP");
+//			System.out.println("ACTION UP "+x+", "+y);
 		}
 		return false;
 	}

@@ -51,7 +51,7 @@ public class Player extends DisplayableObject {
 	private int stateCounter = 0;
 	
 	public Player(Resources res, int originX, int originY){
-		super(res, originX, originY);
+		super(res, originX, originY + GlobalVariables.groundOffset);
 		initImageMap();
 	}
 	
