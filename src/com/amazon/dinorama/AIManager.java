@@ -23,7 +23,7 @@ public class AIManager {
 //			move towards player
 			if (player.originX < enemy.originX) {
 //				randomly attack
-				if (Math.pow(Math.random(), 2) < 1.0 - dist/1280.0) {
+				if (Math.pow(Math.random(), 4) < 1.0 - dist/1280.0) {
 					if (!enemy.isAttacking()) {
 						if (Math.random() < .5)
 							enemy.attackLow();
@@ -38,7 +38,7 @@ public class AIManager {
 				}
 			} else {
 //				randomly attack
-				if (Math.pow(Math.random(), 2) < 1.0 - dist/1280.0) {
+				if (Math.pow(Math.random(), 4) < 1.0 - dist/1280.0) {
 					if (!enemy.isAttacking()) {
 						if (Math.random() < .5)
 							enemy.attackLow();
