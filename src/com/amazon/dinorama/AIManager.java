@@ -14,33 +14,47 @@ public class AIManager {
 		this.enemy = enemy;
 	}
 	
-	public void update() {/* dummy */}
+//	public void update() {/* dummy */}
 	
-//	public void update() {
-//		int dist = Math.abs(player.originX - enemy.originX);
-////		System.err.println("updating AI: "+dist+", "+enemy.currentState);
-//		// move towards player
-//		if (player.originX < enemy.originX) {
-//			// randomly attack
-////			if (Math.random() < 1 - dist/1280) {
-////				if (Math.random() < .5) {
-////					if (enemy.currentState != PlayerState.LOWATTACK)
-////						enemy.attackLow();
-////				} else if (enemy.currentState != PlayerState.HIGHATTACK)
-////					enemy.attackHigh();
-//			/*} else*/ if (enemy.currentState != PlayerState.MOVELEFT)
-//				enemy.moveLeft();
-//		} else {
-//			// randomly attack
-////			if (Math.random() < 1 - dist/1280) {
-////				if (Math.random() < .5) {
-////					if (enemy.currentState != PlayerState.LOWATTACK)
-////						enemy.attackLow();
-////				} else if (enemy.currentState != PlayerState.HIGHATTACK)
-////					enemy.attackHigh();
-//			/*} else*/ if (enemy.currentState != PlayerState.MOVERIGHT)
-//				enemy.moveRight();
-//		}
-//	}
+	public void update() {
+		if (counter >= target + Math.random()*threshold) {
+			int dist = Math.abs(player.originX - enemy.originX);
+			System.err.println("updating AI: "+dist+", "+enemy.currentState);
+//			move towards player
+			if (player.originX < enemy.originX) {
+//				randomly attack
+				if (Math.pow(Math.random(), 2) < 1.0 - dist/1280.0) {
+					if (!enemy.isAttacking()) {
+						if (Math.random() < .5)
+							enemy.attackLow();
+						else
+							enemy.attackHigh();
+					}
+				} else if (enemy.currentState != PlayerState.MOVELEFT) {
+					if (Math.random() < 1.0 - Math.pow(dist/1280.0, 2))
+						enemy.moveLeft();
+					else
+						enemy.forceIdle();
+				}
+			} else {
+//				randomly attack
+				if (Math.pow(Math.random(), 2) < 1.0 - dist/1280.0) {
+					if (!enemy.isAttacking()) {
+						if (Math.random() < .5)
+							enemy.attackLow();
+						else
+							enemy.attackHigh();
+					}
+				} else if (enemy.currentState != PlayerState.MOVERIGHT) {
+					if (Math.random() <  1.0 - Math.pow(dist/1280.0, 2))
+						enemy.moveRight();
+					else
+						enemy.forceIdle();
+				}
+			}
+			counter = 0;
+		} else
+			counter++;
+	}
 	
 }
