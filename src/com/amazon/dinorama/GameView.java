@@ -25,8 +25,11 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private ArrayList<DisplayableObject> objects = new ArrayList<DisplayableObject>(); // drawn in order
 	private TouchButton[] buttons = new TouchButton[4];
 	private Player player = null;
+	private Player enemy = null;
 	private HealthBarObject[] healthCon = new HealthBarObject[2];
 	private HealthBarState[] health = new HealthBarState[2];
+	
+	private AIManager ai;
 	
 	public GameView(Context context) {
 		super(context);
@@ -60,8 +63,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		health[1] = new HealthBarState(res, PlayerEnum.AI);
 	}
 	
-	public void init() {
+	public void init() {		
 		player = new Player(res, 0, 0);
+		enemy = new Player(res, 1000, 0);
+		ai = new AIManager(player, enemy);
 		createButtons();
 		createHealth();
 		synchronized(objects) {
@@ -72,6 +77,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			bg.setScale(1.667);
 			objects.add(bg);
 			objects.add(player);
+			objects.add(enemy);
 			for (HealthBarObject o : healthCon)
 				objects.add(o);
 			for (HealthBarState o : health)
@@ -79,7 +85,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			for (TouchButton o : buttons)
 				objects.add(o);
 		}
-		
 	}
 	
 	public void activate(boolean on) {
@@ -108,6 +113,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void update() {
+		// update ai
+		if (ai != null)
+			ai.update();
+		
 		// update everything
 		synchronized(objects) {
 			for (DisplayableObject o : objects)
