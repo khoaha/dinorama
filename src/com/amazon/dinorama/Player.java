@@ -38,13 +38,14 @@ public class Player extends DisplayableObject {
 	}
 	
 	//Constants
-	private final int speed = 5;
+	private final int speed = 4;
 	
 	//Stats
 	private int dinoType = 1;
 	private int health = 100;
 
 	//State
+	private boolean buttonPressed = false;
 	private PlayerState currentState = PlayerState.IDLE;
 	private int stateCounter = 0;
 	
@@ -60,17 +61,16 @@ public class Player extends DisplayableObject {
 		setImageDisplayed(images.get(0));
 		stateCounter = 0;
 	}
-	
-	private void step(){
+		
+	private void step(){		
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
-		if(stateCounter == 0){
+		if((stateCounter >= 0) && (stateCounter < 19)){
 			setImageDisplayed(images.get(5));
-		}else if(stateCounter == 5){
+		}else if((stateCounter >= 19) && (stateCounter < 38)){
 			setImageDisplayed(images.get(6));
-		}else if(stateCounter == 10){
+		}else{
 			stateCounter = 0;
-			currentState = PlayerState.IDLE;
 		}
 	}
 	
@@ -82,41 +82,48 @@ public class Player extends DisplayableObject {
 		step();
 		originX -= speed;
 	}
-	
+
 	public void update(){
 		stateCounter++;
 		if(currentState == PlayerState.IDLE){
 			idle();
-		}else if(currentState == PlayerState.MOVERIGHT){
-			movementRight();
-		}else if(currentState == PlayerState.MOVELEFT){
-			movementLeft();
-		}else if(currentState == PlayerState.HIGHATTACK){
-			
-		}else if(currentState == PlayerState.LOWATTACK){
-			
-		}else if(currentState == PlayerState.LOWBLOCK){
-			
-		}else if(currentState == PlayerState.HIGHBLOCK){
-			
 		}
-		
+
+		if(buttonPressed){
+			if(currentState == PlayerState.MOVERIGHT){
+				movementRight();
+			}else if(currentState == PlayerState.MOVELEFT){
+				movementLeft();
+			}else if(currentState == PlayerState.HIGHATTACK){
+
+			}else if(currentState == PlayerState.LOWATTACK){
+
+			}else if(currentState == PlayerState.LOWBLOCK){
+
+			}else if(currentState == PlayerState.HIGHBLOCK){
+
+			}
+		}
+
 	}	
 	
 	public void forceIdle(){
+		buttonPressed = false;
+		stateCounter = 0;
 		currentState = PlayerState.IDLE;
+		
 	}
 	
 	public void moveRight(){
+		buttonPressed = true;
 		currentState = PlayerState.MOVERIGHT;
 	}
 	
 	public void moveLeft(){
+		buttonPressed = true;
 		currentState = PlayerState.MOVELEFT;
 	}
 	
-	
-	//hitting buttons changes state and resolves state conflicts
-	
+		
 
 }
