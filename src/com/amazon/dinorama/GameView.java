@@ -23,8 +23,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	private Canvas canvas;
 	
 	private ArrayList<DisplayableObject> objects = new ArrayList<DisplayableObject>(); // drawn in order
-	private TouchButton[] buttons = new TouchButton[6];
+	private TouchButton[] buttons = new TouchButton[4];
 	private Player player = null;
+	private HealthBarObject[] healthCon = new HealthBarObject[2];
+	private HealthBarState[] health = new HealthBarState[2];
 	
 	public GameView(Context context) {
 		super(context);
@@ -44,18 +46,24 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		thread = new GameThread(getHolder(), this);
 	}
 	
-	public void createButtons() {
-		buttons[0] = new TouchButton(res, 0, 0, TouchButton.TouchButtonDirection.HI_ATK);
-		buttons[1] = new TouchButton(res, 128, 0, TouchButton.TouchButtonDirection.HI_BLK);
-		buttons[2] = new TouchButton(res, 256, 0, TouchButton.TouchButtonDirection.LEFT);
-		buttons[3] = new TouchButton(res, 0, 128, TouchButton.TouchButtonDirection.LO_ATK);
-		buttons[4] = new TouchButton(res, 128, 128, TouchButton.TouchButtonDirection.LO_BLK);
-		buttons[5] = new TouchButton(res, 256, 128, TouchButton.TouchButtonDirection.RIGHT);
+	protected void createButtons() {
+		buttons[0] = new TouchButton(res, 1120, 480, TouchButton.TouchButtonDirection.HI_ATK);
+		buttons[1] = new TouchButton(res, 32, 644, TouchButton.TouchButtonDirection.LEFT);
+		buttons[2] = new TouchButton(res, 1120, 644, TouchButton.TouchButtonDirection.LO_ATK);
+		buttons[3] = new TouchButton(res, 192, 644, TouchButton.TouchButtonDirection.RIGHT);
+	}
+	
+	protected void createHealth() {
+		healthCon[0] = new HealthBarObject(res, PlayerEnum.PLAYER);
+		healthCon[1] = new HealthBarObject(res, PlayerEnum.AI);
+		health[0] = new HealthBarState(res, PlayerEnum.PLAYER);
+		health[1] = new HealthBarState(res, PlayerEnum.AI);
 	}
 	
 	public void init() {
-		player = new Player(1, res, 0, 0);
+		player = new Player(res, 0, 0);
 		createButtons();
+		createHealth();
 		synchronized(objects) {
 //			for (int i=0; i<100; i++)
 //				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
@@ -64,6 +72,10 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			bg.setScale(1.667);
 			objects.add(bg);
 			objects.add(player);
+			for (HealthBarObject o : healthCon)
+				objects.add(o);
+			for (HealthBarState o : health)
+				objects.add(o);
 			for (TouchButton o : buttons)
 				objects.add(o);
 		}
@@ -98,8 +110,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public void update() {
 		// update everything
 		synchronized(objects) {
-		for (DisplayableObject o : objects)
-			o.update();
+			for (DisplayableObject o : objects)
+				o.update();
 		}
 	}
 	

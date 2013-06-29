@@ -50,9 +50,8 @@ public class Player extends DisplayableObject {
 	private PlayerState currentState = PlayerState.IDLE;
 	private int stateCounter = 0;
 	
-	public Player(int dinoType, Resources res, int originX, int originY){
-		super(res, originX, originY);
-		this.dinoType = dinoType;
+	public Player(Resources res, int originX, int originY){
+		super(res, originX, originY + GlobalVariables.groundOffset);
 		initImageMap();
 	}
 	

@@ -1,6 +1,8 @@
 package com.amazon.dinorama;
 
 public class GlobalVariables {
+	
+	public static int groundOffset = 192;
 
 	public static int playerHealth = 100;
 	public static int AIHealth = 100;

@@ -21,6 +21,7 @@ public class HealthBarObject extends DisplayableObject{
 		setImageDisplayed(BitmapFactory.decodeResource(res, R.drawable.health_back));
 		if(player.equals(PlayerEnum.AI)){
 			scaleX = -1;
+			originX = 1280 - GlobalVariables.healthBarX;
 		}
 	}
 
