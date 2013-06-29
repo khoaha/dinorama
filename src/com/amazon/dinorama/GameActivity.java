@@ -1,9 +1,12 @@
 package com.amazon.dinorama;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class GameActivity extends Activity {
+
+	MediaPlayer song;
 	
 	protected GameView gameView;
 	
@@ -13,6 +16,11 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         gameView = new GameView(this);
         setContentView(gameView);
+        
+        song = MediaPlayer.create(GameActivity.this, R.raw.game_mode);
+        song.setLooping(true);
+        song.start();
+
     }
     
     @Override

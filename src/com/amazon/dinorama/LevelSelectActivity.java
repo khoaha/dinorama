@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.ImageView;
 
 public class LevelSelectActivity extends Activity {
+	
+	MediaPlayer song;
 	
 	private static final int RESULT_LOAD_IMAGE = 100;
 	
@@ -27,6 +30,9 @@ public class LevelSelectActivity extends Activity {
         mode = intent.getStringExtra("game_mode");
         dinoNum = intent.getIntExtra("dinoNum", 1);
 
+        song = MediaPlayer.create(LevelSelectActivity.this, R.raw.level_select);
+        song.setLooping(true);
+        song.start();
 	}
 	
 	public void pickedLevelOne(View view){
@@ -34,6 +40,7 @@ public class LevelSelectActivity extends Activity {
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
+		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelTwo(View view){
@@ -41,6 +48,7 @@ public class LevelSelectActivity extends Activity {
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
+		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelThree(View view){
@@ -48,6 +56,7 @@ public class LevelSelectActivity extends Activity {
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
+		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFour(View view){
@@ -55,6 +64,7 @@ public class LevelSelectActivity extends Activity {
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
+		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFive(View view){
@@ -62,6 +72,7 @@ public class LevelSelectActivity extends Activity {
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
+		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 
@@ -95,6 +106,7 @@ public class LevelSelectActivity extends Activity {
             Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
     		myIntent.putExtra("game_mode", mode);
     		myIntent.putExtra("dinoNum", dinoNum);
+    		song.stop();
         	LevelSelectActivity.this.startActivity(myIntent);
             
         }
