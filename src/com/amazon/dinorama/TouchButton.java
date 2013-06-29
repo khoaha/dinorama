@@ -1,6 +1,10 @@
 package com.amazon.dinorama;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import android.content.res.Resources;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 public class TouchButton extends DisplayableObject {
@@ -9,6 +13,8 @@ public class TouchButton extends DisplayableObject {
 	
 	public TouchButtonDirection type;
 	
+	protected HashMap<TouchButtonDirection, Bitmap> imagesUp = new HashMap<TouchButtonDirection, Bitmap>();
+	protected HashMap<TouchButtonDirection, Bitmap> imagesDown = new HashMap<TouchButtonDirection, Bitmap>();
 	protected boolean tapped = false;
 	
 	protected enum TouchButtonDirection {
@@ -23,6 +29,7 @@ public class TouchButton extends DisplayableObject {
 	public TouchButton(Resources res, int originX, int originY, TouchButtonDirection dir) {
 		super(res, originX, originY);
 		type = dir;
+		getImages();
 		setImage();
 	}
 	
@@ -35,27 +42,28 @@ public class TouchButton extends DisplayableObject {
 		tapped = false;
 	}
 	
+	protected void getImages() {
+		imagesUp.put(TouchButtonDirection.HI_ATK, BitmapFactory.decodeResource(res, R.drawable.attackbuttonhigh));
+		imagesUp.put(TouchButtonDirection.LO_ATK, BitmapFactory.decodeResource(res, R.drawable.attackbuttonlow));
+		imagesUp.put(TouchButtonDirection.HI_BLK, BitmapFactory.decodeResource(res, R.drawable.arrow_hi));
+		imagesUp.put(TouchButtonDirection.LO_BLK, BitmapFactory.decodeResource(res, R.drawable.arrow_lo));
+		imagesUp.put(TouchButtonDirection.LEFT, BitmapFactory.decodeResource(res, R.drawable.directionbuttonleft));
+		imagesUp.put(TouchButtonDirection.RIGHT, BitmapFactory.decodeResource(res, R.drawable.directionbuttonright));
+		
+		imagesDown.put(TouchButtonDirection.HI_ATK, BitmapFactory.decodeResource(res, R.drawable.attackbuttonpressedhigh));
+		imagesDown.put(TouchButtonDirection.LO_ATK, BitmapFactory.decodeResource(res, R.drawable.attackbuttonpressedlow));
+		imagesDown.put(TouchButtonDirection.HI_BLK, BitmapFactory.decodeResource(res, R.drawable.arrow_hi));
+		imagesDown.put(TouchButtonDirection.LO_BLK, BitmapFactory.decodeResource(res, R.drawable.arrow_lo));
+		imagesDown.put(TouchButtonDirection.LEFT, BitmapFactory.decodeResource(res, R.drawable.directionbuttonpressedleft));
+		imagesDown.put(TouchButtonDirection.RIGHT, BitmapFactory.decodeResource(res, R.drawable.directionbuttonpressedright));
+	}
+	
 	protected void setImage() {
 		int image;
 		if (!tapped)
-			switch(type) {
-			case HI_ATK: image = R.drawable.attackbuttonhigh; break;
-			case LO_ATK: image = R.drawable.attackbuttonlow; break;
-			case HI_BLK: image = R.drawable.arrow_hi; break;
-			case LO_BLK: image = R.drawable.arrow_lo; break;
-			case LEFT: image = R.drawable.directionbuttonleft; break;
-			default: image = R.drawable.directionbuttonright;
-			}
+			setImageDisplayed(imagesUp.get(type));
 		else
-			switch(type) {
-			case HI_ATK: image = R.drawable.attackbuttonpressedhigh; break;
-			case LO_ATK: image = R.drawable.attackbuttonpressedlow; break;
-			case HI_BLK: image = R.drawable.arrow_hi; break;
-			case LO_BLK: image = R.drawable.arrow_lo; break;
-			case LEFT: image = R.drawable.directionbuttonpressedleft; break;
-			default: image = R.drawable.directionbuttonpressedright;
-			}
-		setImageDisplayed(BitmapFactory.decodeResource(res, image));
+			setImageDisplayed(imagesDown.get(type));
 	}
 	
 	@Override

@@ -135,7 +135,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 						player.moveRight();
 					if (b.type == TouchButton.TouchButtonDirection.LEFT)
 						player.moveLeft();
-					System.out.println(b);
+//					System.out.println(b);
 				}
 			return true;
 		} else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
@@ -143,7 +143,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			for (TouchButton o : buttons) {
 				o.release();
 			}
-			System.out.println("ACTION UP");
+//			System.out.println("ACTION UP");
 		}
 		return false;
 	}
