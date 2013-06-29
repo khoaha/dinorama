@@ -20,7 +20,8 @@
         android:layout_marginRight="71dp"
         android:layout_marginTop="77dp"
         android:layout_toLeftOf="@+id/imageView1"
-        android:src="@android:drawable/btn_star" />
+        android:src="@android:drawable/btn_star"
+        android:onClick="pickedDinoOne" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -29,7 +30,8 @@
         android:layout_alignLeft="@+id/imageButton1"
         android:layout_below="@+id/imageButton1"
         android:layout_marginTop="99dp"
-        android:src="@android:drawable/btn_star_big_on" />
+        android:src="@android:drawable/btn_star_big_on"
+        android:onClick="pickedDinoTwo" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -38,7 +40,8 @@
         android:layout_alignTop="@+id/imageButton1"
         android:layout_marginLeft="60dp"
         android:layout_toRightOf="@+id/imageView1"
-        android:src="@android:drawable/btn_star" />
+        android:src="@android:drawable/btn_star"
+        android:onClick="pickedDinoThree" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -46,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton2"
         android:layout_alignTop="@+id/imageButton3"
-        android:src="@android:drawable/ic_menu_week" />
+        android:src="@android:drawable/ic_menu_week"
+        android:onClick="pickedDinoFour" />
 
 </RelativeLayout>

@@ -15,7 +15,6 @@ public class CharacterSelectActivity extends Activity {
         setContentView(R.layout.character_select_screen);
         Intent intent = getIntent();
         mode = intent.getStringExtra("game_mode");
-    
 	}
 	
 	public void pickedDinoOne(View view){
@@ -34,6 +33,7 @@ public class CharacterSelectActivity extends Activity {
 	
 	public void pickedDinoThree(View view){
 		Intent myIntent = new Intent(CharacterSelectActivity.this, LevelSelectActivity.class);
+		myIntent.putExtra("game_mode", mode);
     	myIntent.putExtra("dinoNum", 3); //Optional parameters
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}
