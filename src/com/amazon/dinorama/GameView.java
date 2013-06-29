@@ -127,18 +127,18 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	public boolean onTouchEvent(MotionEvent event) {
 		double x = event.getX();
 		double y = event.getY();
-		boolean flag = false;
-		for (TouchButton b : buttons)
-			if (b.hit(x, y)) {
-				if (b.type == TouchButton.TouchButtonDirection.RIGHT)
-					player.moveRight();
-				if (b.type == TouchButton.TouchButtonDirection.LEFT)
-					player.moveLeft();
-				System.out.println(b);
-				flag = true;
-			}
-		if (!flag)
+		if (event.getAction() == android.view.MotionEvent.ACTION_DOWN)
+			for (TouchButton b : buttons)
+				if (b.hit(x, y)) {
+					if (b.type == TouchButton.TouchButtonDirection.RIGHT)
+						player.moveRight();
+					if (b.type == TouchButton.TouchButtonDirection.LEFT)
+						player.moveLeft();
+					System.out.println(b);
+				}
+		else if (event.getAction() == android.view.MotionEvent.ACTION_UP)
 			player.forceIdle();
+			
 		return true;
 	}
 }

@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 
 public class TouchButton extends DisplayableObject {
 	
-	public static int size = 64;
+	public static int size = 128;
 	
 	public TouchButtonDirection type;
 	
@@ -23,12 +23,12 @@ public class TouchButton extends DisplayableObject {
 		type = dir;
 		int image;
 		switch(type) {
-		case HI_ATK: image = R.drawable.arrow_up; break;
-		case LO_ATK: image = R.drawable.arrow_down; break;
+		case HI_ATK: image = R.drawable.attackbuttonhigh; break;
+		case LO_ATK: image = R.drawable.attackbuttonlow; break;
 		case HI_BLK: image = R.drawable.arrow_hi; break;
 		case LO_BLK: image = R.drawable.arrow_lo; break;
-		case LEFT: image = R.drawable.arrow_left; break;
-		default: image = R.drawable.arrow_right;
+		case LEFT: image = R.drawable.directionbuttonleft; break;
+		default: image = R.drawable.directionbuttonright;
 		}
 		setImageDisplayed(BitmapFactory.decodeResource(res, image));
 	}
