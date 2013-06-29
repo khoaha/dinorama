@@ -1,6 +1,7 @@
 package com.amazon.dinorama;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -29,38 +30,38 @@ public class LevelSelectActivity extends Activity {
 	}
 	
 	public void pickedLevelOne(View view){
-		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_1), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelTwo(View view){
-		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelThree(View view){
-		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFour(View view){
-		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFive(View view){
-		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 
@@ -89,16 +90,28 @@ public class LevelSelectActivity extends Activity {
             ImageView imageView = (ImageView) findViewById(R.id.imgView);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             
-            Bitmap levelBitmap = BitmapFactory.decodeFile(picturePath);
+            LevelBitmapWrapper.bitmap = BitmapFactory.decodeFile(picturePath);
             
             Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
     		myIntent.putExtra("game_mode", mode);
-        	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    		myIntent.putExtra("dinoNum", dinoNum);
         	LevelSelectActivity.this.startActivity(myIntent);
             
         }
      
      
     }
+	
+	public Bitmap scaleDownBitmap(Bitmap photo, int newHeight) {
+
+		float densityMultiplier = this.getResources().getDisplayMetrics().density;        
+
+		int h= (int) (newHeight*densityMultiplier);
+		int w= (int) (h * photo.getWidth()/((double) photo.getHeight()));
+
+		photo=Bitmap.createScaledBitmap(photo, w, h, true);
+
+		return photo;
+	}
 	
 }

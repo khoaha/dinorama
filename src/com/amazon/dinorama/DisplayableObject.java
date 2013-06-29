@@ -39,6 +39,11 @@ public class DisplayableObject {
 		return scaleX;
 	}
 	
+	public void setScale(double passedScale){
+		scaleX = passedScale;
+		scaleY = passedScale;
+	}
+	
 	public double getScaleY(){
 		return scaleY;
 	}

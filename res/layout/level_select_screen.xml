@@ -9,6 +9,15 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"></ImageView>
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:src="@android:drawable/ic_btn_speak_now"
+        android:onClick="pickedLevelOne" />
+
     <Button
         android:id="@+id/buttonLoadPicture"
         android:layout_width="wrap_content"
