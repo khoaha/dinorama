@@ -11,6 +11,8 @@ public class Player extends DisplayableObject {
 	//Images
 	private HashMap<Integer, ArrayList<Bitmap>> playerImages;
 	
+	private final int boundary = 96;
+	
 	private boolean hitting = false;
 	
 	private void initImageMap(){
@@ -57,6 +59,9 @@ public class Player extends DisplayableObject {
 		initImageMap();
 	}
 	
+	protected void changeDinoType(int type) {
+		dinoType = type;
+	}
 	
 	private void idle(){
 		hitting = false;
@@ -81,12 +86,14 @@ public class Player extends DisplayableObject {
 	private void movementRight(){
 		hitting = false;
 		step();
-		originX += speed;
+		if ((scaleX == 1 && originX < 800+boundary-speed) || (scaleX == -1 && originX < 1280+boundary-speed))
+			originX += speed;
 	}
 	private void movementLeft(){
 		hitting = false;
 		step();
-		originX -= speed;
+		if ((scaleX == 1 && originX > -boundary+speed) || (scaleX == -1 && originX > 480-boundary+speed))
+			originX -= speed;
 	}
 	
 	private void attackingHigh(){
