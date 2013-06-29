@@ -59,10 +59,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 		synchronized(buttons) {
 			createButtons();
 		}
-//		synchronized(objects) {
+		synchronized(objects) {
 //			for (int i=0; i<100; i++)
 //				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
-//		}
+			for (TouchButton o : buttons)
+				objects.add(o);
+		}
 		
 	}
 	
