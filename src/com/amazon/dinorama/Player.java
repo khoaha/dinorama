@@ -51,7 +51,7 @@ public class Player extends DisplayableObject {
 	private int stateCounter = 0;
 	
 	public Player(Resources res, int originX, int originY){
-		super(res, originX, originY + GlobalVariables.groundOffset);
+		super(res, originX, originY);
 		initImageMap();
 	}
 	
@@ -88,10 +88,25 @@ public class Player extends DisplayableObject {
 		
 		if((stateCounter >= 0) && (stateCounter < 5)){
 			setImageDisplayed(images.get(1));
-		}else if((stateCounter >= 5) && (stateCounter < 15)){
+		}else if((stateCounter >= 5) && (stateCounter < 20)){
 			setImageDisplayed(images.get(2));
-		}else if((stateCounter >= 15) && (stateCounter < 20)){
+		}else if((stateCounter >= 20) && (stateCounter < 25)){
 			setImageDisplayed(images.get(1));
+		}else{
+			setImageDisplayed(images.get(0));
+			attackComplete = true;
+		}
+	}
+	
+	private void attackingLow(){
+ArrayList<Bitmap> images = playerImages.get(dinoType);
+		
+		if((stateCounter >= 0) && (stateCounter < 5)){
+			setImageDisplayed(images.get(3));
+		}else if((stateCounter >= 5) && (stateCounter < 20)){
+			setImageDisplayed(images.get(4));
+		}else if((stateCounter >= 20) && (stateCounter < 25)){
+			setImageDisplayed(images.get(3));
 		}else{
 			setImageDisplayed(images.get(0));
 			attackComplete = true;
@@ -114,7 +129,9 @@ public class Player extends DisplayableObject {
 					attackingHigh();
 				}
 			}else if(currentState == PlayerState.LOWATTACK){
-
+				if(attackComplete == false){
+					attackingLow();
+				}
 			}
 		}
 
