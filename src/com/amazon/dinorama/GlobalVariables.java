@@ -4,7 +4,7 @@ public class GlobalVariables {
 	
 	public static int gameResult = 0; //0 no one one, 1 player won, 2 enemy won
 	
-	public static int groundOffset = 192;
+	public static int groundOffset = 230;
 
 	public static int playerHealth = 100;
 	public static int AIHealth = 100;

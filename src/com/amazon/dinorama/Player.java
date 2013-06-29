@@ -94,7 +94,7 @@ public class Player extends DisplayableObject {
 	private final int speed = 4;
 	
 	//Stats
-	private int dinoType = DinoNumWrapper.dinoNum;
+	private int dinoType;
 	private int health = 100;
 
 	//State
@@ -105,11 +105,13 @@ public class Player extends DisplayableObject {
 	
 	public Player(Resources res, int originX, int originY){
 		super(res, originX, originY + GlobalVariables.groundOffset);
+		dinoType = DinoNumWrapper.dinoNum;
 		initImageMap();
 	}
 	
 	protected void changeDinoType(int type) {
-		dinoType = type;
+		dinoType = ((int)(Math.random()*4)+1);
+		initImageMap();
 	}
 	
 	private void idle(){
