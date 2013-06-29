@@ -1,13 +1,15 @@
 package com.amazon.dinorama;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 
 public class DisplayableObject {
 	Bitmap imageDisplayed;
 	int originX;
 	int originY;
+	Resources res;
 	
-	public DisplayableObject(int originX, int originY){
+	public DisplayableObject(Resources res, int originX, int originY){
 		this.originX = originX;
 		this.originY = originY;
 	}
