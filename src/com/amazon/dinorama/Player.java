@@ -124,6 +124,15 @@ public class Player extends DisplayableObject {
 		currentState = PlayerState.MOVELEFT;
 	}
 	
+	public void attackHigh(){
+		buttonPressed = true;
+		currentState = PlayerState.HIGHATTACK;
+		
+	}
+	
+	public void attackLow(){
+		
+	}
 		
 
 }
