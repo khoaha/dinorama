@@ -1,6 +1,7 @@
 package com.amazon.dinorama;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 
@@ -24,7 +25,14 @@ public class GameActivity extends Activity {
     }
     
     public void triggerEnd(int win) {
-    	
+    	if(win == 1){
+    		Intent myIntent = new Intent(GameActivity.this, GameWinActivity.class);
+    		GameActivity.this.startActivity(myIntent);
+    	}
+    	if(win == 2){
+    		Intent myIntent = new Intent(GameActivity.this, GameOverActivity.class);
+    		GameActivity.this.startActivity(myIntent);
+    	}
     }
     
     @Override
