@@ -105,6 +105,12 @@ public class LevelSelectActivity extends Activity {
      
     }
 	
+	@Override
+    protected void onPause() {
+    	super.onPause();
+    	song.stop();
+    }
+	
 	public Bitmap scaleDownBitmap(Bitmap photo, int newHeight) {
 
 		float densityMultiplier = this.getResources().getDisplayMetrics().density;        

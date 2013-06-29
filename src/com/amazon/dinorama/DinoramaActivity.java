@@ -33,4 +33,10 @@ public class DinoramaActivity extends Activity {
     	song.stop();
     	DinoramaActivity.this.startActivity(myIntent);
     }
+    
+    @Override
+    protected void onPause() {
+    	super.onPause();
+    	song.stop();
+    }
 }

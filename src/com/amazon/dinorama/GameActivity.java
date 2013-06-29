@@ -27,6 +27,7 @@ public class GameActivity extends Activity {
     protected void onPause() {
     	super.onPause();
     	gameView.activate(false);
+    	song.stop();
     }
     
     @Override

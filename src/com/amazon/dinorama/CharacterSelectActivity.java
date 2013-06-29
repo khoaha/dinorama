@@ -54,5 +54,11 @@ public class CharacterSelectActivity extends Activity {
     	song.stop();
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}
+	
+	@Override
+    protected void onPause() {
+    	super.onPause();
+    	song.stop();
+    }
 
 }
