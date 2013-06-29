@@ -37,28 +37,28 @@ public class LevelSelectActivity extends Activity {
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelTwo(View view){
-		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_2), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelThree(View view){
-		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_3), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFour(View view){
-		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_4), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFive(View view){
-		LevelBitmapWrapper.bitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_5), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		myIntent.putExtra("dinoNum", dinoNum);
@@ -90,7 +90,7 @@ public class LevelSelectActivity extends Activity {
             ImageView imageView = (ImageView) findViewById(R.id.imgView);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             
-            LevelBitmapWrapper.bitmap = BitmapFactory.decodeFile(picturePath);
+            LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeFile(picturePath), 480);
             
             Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
     		myIntent.putExtra("game_mode", mode);
