@@ -45,10 +45,10 @@ public class Player extends DisplayableObject {
 	private int health = 100;
 
 	//State
-	private boolean buttonPressed = false;
-	private boolean attackComplete = true;
-	private PlayerState currentState = PlayerState.IDLE;
-	private int stateCounter = 0;
+	protected boolean buttonPressed = false;
+	protected boolean attackComplete = true;
+	protected PlayerState currentState = PlayerState.IDLE;
+	protected int stateCounter = 0;
 	
 	public Player(Resources res, int originX, int originY){
 		super(res, originX, originY + GlobalVariables.groundOffset);
@@ -165,6 +165,12 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 		attackComplete = false;
 		currentState = PlayerState.LOWATTACK;
 	}
-		
+	
+	public boolean isAttacking(){
+		return !attackComplete;
+	}
 
 }
+
+//check distance
+//what stat theyre in when attacking, if attacking dont do damaging
