@@ -13,20 +13,17 @@ public class GameOverActivity extends Activity {
 	}
 	
 	public void initiateReplay(View view){
-		//add code here that passes necessary information and initiates a GameActivity
+		Intent myIntent = new Intent(GameOverActivity.this, GameActivity.class);
+    	GameOverActivity.this.startActivity(myIntent);
 	}
 	
 	public void initiateCharacterSelect(View view){
 		Intent myIntent = new Intent(GameOverActivity.this, CharacterSelectActivity.class);
-    	// add extra parameters to myIntent using myIntent.putExtra("game_mode", mode); for CharacterSelectActivity
     	GameOverActivity.this.startActivity(myIntent);
 	}
 	
 	public void initiateLevelSelect(View view){
 		Intent myIntent = new Intent(GameOverActivity.this, LevelSelectActivity.class);
-    	// add extra parameters to myIntent using 
-		// myIntent.putExtra("game_mode", mode); for CharacterSelectActivity and
-		// myIntent.putExtra("dinoNum", INT);
     	GameOverActivity.this.startActivity(myIntent);
 	}
 	

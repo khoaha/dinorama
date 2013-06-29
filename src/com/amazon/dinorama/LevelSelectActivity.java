@@ -20,7 +20,6 @@ public class LevelSelectActivity extends Activity {
 	private static final int RESULT_LOAD_IMAGE = 100;
 	
 	String mode;
-	int dinoNum;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +27,6 @@ public class LevelSelectActivity extends Activity {
         setContentView(R.layout.level_select_screen);
         Intent intent = getIntent();
         mode = intent.getStringExtra("game_mode");
-        dinoNum = intent.getIntExtra("dinoNum", 1);
-
         song = MediaPlayer.create(LevelSelectActivity.this, R.raw.level_select);
         song.setLooping(true);
         song.start();
@@ -39,7 +36,6 @@ public class LevelSelectActivity extends Activity {
 		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_1), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-		myIntent.putExtra("dinoNum", dinoNum);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
@@ -47,7 +43,6 @@ public class LevelSelectActivity extends Activity {
 		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_2), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-		myIntent.putExtra("dinoNum", dinoNum);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
@@ -55,7 +50,6 @@ public class LevelSelectActivity extends Activity {
 		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_3), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-		myIntent.putExtra("dinoNum", dinoNum);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
@@ -63,7 +57,6 @@ public class LevelSelectActivity extends Activity {
 		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_4), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-		myIntent.putExtra("dinoNum", dinoNum);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
@@ -71,7 +64,6 @@ public class LevelSelectActivity extends Activity {
 		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_5), 480); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
-		myIntent.putExtra("dinoNum", dinoNum);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
@@ -105,7 +97,6 @@ public class LevelSelectActivity extends Activity {
             
             Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
     		myIntent.putExtra("game_mode", mode);
-    		myIntent.putExtra("dinoNum", dinoNum);
     		song.stop();
         	LevelSelectActivity.this.startActivity(myIntent);
             

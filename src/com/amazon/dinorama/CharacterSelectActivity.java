@@ -9,7 +9,7 @@ import android.view.View;
 public class CharacterSelectActivity extends Activity {
 	
 	MediaPlayer song;
-	String mode = "default";
+	String mode = "arcade";
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class CharacterSelectActivity extends Activity {
 	public void pickedDinoOne(View view){
 		Intent myIntent = new Intent(CharacterSelectActivity.this, LevelSelectActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("dinoNum", 1); //Optional parameters
+    	DinoNumWrapper.dinoNum = 1;
     	song.stop();
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}
@@ -34,7 +34,7 @@ public class CharacterSelectActivity extends Activity {
 	public void pickedDinoTwo(View view){
 		Intent myIntent = new Intent(CharacterSelectActivity.this, LevelSelectActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("dinoNum", 2); //Optional parameters
+    	DinoNumWrapper.dinoNum = 2;
     	song.stop();
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}
@@ -42,7 +42,7 @@ public class CharacterSelectActivity extends Activity {
 	public void pickedDinoThree(View view){
 		Intent myIntent = new Intent(CharacterSelectActivity.this, LevelSelectActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("dinoNum", 3); //Optional parameters
+    	DinoNumWrapper.dinoNum = 3;
     	song.stop();
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}
@@ -50,7 +50,7 @@ public class CharacterSelectActivity extends Activity {
 	public void pickedDinoFour(View view){
 		Intent myIntent = new Intent(CharacterSelectActivity.this, LevelSelectActivity.class);
 		myIntent.putExtra("game_mode", mode);
-    	myIntent.putExtra("dinoNum", 4); //Optional parameters
+    	DinoNumWrapper.dinoNum = 4;
     	song.stop();
     	CharacterSelectActivity.this.startActivity(myIntent);
 	}

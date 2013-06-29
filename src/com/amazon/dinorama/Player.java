@@ -41,7 +41,7 @@ public class Player extends DisplayableObject {
 	private final int speed = 4;
 	
 	//Stats
-	private int dinoType = 1;
+	private int dinoType = DinoNumWrapper.dinoNum;
 	private int health = 100;
 
 	//State
