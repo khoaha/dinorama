@@ -46,6 +46,7 @@ public class Player extends DisplayableObject {
 
 	//State
 	private boolean buttonPressed = false;
+	private boolean attackComplete = true;
 	private PlayerState currentState = PlayerState.IDLE;
 	private int stateCounter = 0;
 	
@@ -82,6 +83,21 @@ public class Player extends DisplayableObject {
 		step();
 		originX -= speed;
 	}
+	
+	private void attackingHigh(){
+		ArrayList<Bitmap> images = playerImages.get(dinoType);
+		
+		if((stateCounter >= 0) && (stateCounter < 5)){
+			setImageDisplayed(images.get(1));
+		}else if((stateCounter >= 5) && (stateCounter < 15)){
+			setImageDisplayed(images.get(2));
+		}else if((stateCounter >= 15) && (stateCounter < 20)){
+			setImageDisplayed(images.get(1));
+		}else{
+			setImageDisplayed(images.get(0));
+			attackComplete = true;
+		}
+	}
 
 	public void update(){
 		stateCounter++;
@@ -93,14 +109,12 @@ public class Player extends DisplayableObject {
 			if(currentState == PlayerState.MOVERIGHT){
 				movementRight();
 			}else if(currentState == PlayerState.MOVELEFT){
-				movementLeft();
+					movementLeft();
 			}else if(currentState == PlayerState.HIGHATTACK){
-
+				if(attackComplete == false){
+					attackingHigh();
+				}
 			}else if(currentState == PlayerState.LOWATTACK){
-
-			}else if(currentState == PlayerState.LOWBLOCK){
-
-			}else if(currentState == PlayerState.HIGHBLOCK){
 
 			}
 		}
@@ -126,12 +140,14 @@ public class Player extends DisplayableObject {
 	
 	public void attackHigh(){
 		buttonPressed = true;
-		currentState = PlayerState.HIGHATTACK;
-		
+		attackComplete = false;
+		currentState = PlayerState.HIGHATTACK;	
 	}
 	
 	public void attackLow(){
-		
+		buttonPressed = true;
+		attackComplete = false;
+		currentState = PlayerState.LOWATTACK;
 	}
 		
 
