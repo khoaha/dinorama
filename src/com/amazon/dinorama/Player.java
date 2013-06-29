@@ -103,6 +103,10 @@ public class Player extends DisplayableObject {
 		
 	}	
 	
+	public void forceIdle(){
+		currentState = PlayerState.IDLE;
+	}
+	
 	public void moveRight(){
 		currentState = PlayerState.MOVERIGHT;
 	}
