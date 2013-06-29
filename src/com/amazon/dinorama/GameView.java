@@ -35,6 +35,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	
 	private GameActivity creator;
 	
+	private boolean init = false;
+	
 	public GameView(GameActivity context) {
 		super(context);
 		sh = getHolder();
@@ -95,6 +97,8 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 			for (TouchButton o : buttons)
 				objects.add(o);
 		}
+		
+		init = true;
 	}
 	
 	public void activate(boolean on) {
@@ -123,22 +127,28 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void update() {
-		if(gameLogic != null)
-			gameLogic.update();
-		
-		// update ai
-		if (ai != null)
-			ai.update();
-		
-		// update everything
-		synchronized(objects) {
-			for (DisplayableObject o : objects)
-				o.update();
+		if (init) {
+			if(gameLogic != null) {
+				gameLogic.update();
+			}
+
+			// update ai
+			if (ai != null) {
+				ai.update();
+			}
+
+			// update everything
+			synchronized(objects) {
+				for (DisplayableObject o : objects) {
+					o.update();
+				}
+			}
+
+			int win = checkWin();
+			if (win != 0) {
+				creator.triggerEnd(win);
+			}
 		}
-		
-		int win = checkWin();
-		if (win != 0)
-			creator.triggerEnd(win);
 	}
 	
 	protected int checkWin() {

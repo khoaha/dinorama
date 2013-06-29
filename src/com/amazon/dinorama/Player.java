@@ -11,6 +11,8 @@ public class Player extends DisplayableObject {
 	//Images
 	private HashMap<Integer, ArrayList<Bitmap>> playerImages;
 	
+	private boolean hitting = false;
+	
 	private void initImageMap(){
 		playerImages = new HashMap<Integer, ArrayList<Bitmap>>();
 		Bitmap idle, step1, step2, hA1, hA2, lA1, lA2, hB, lB;
@@ -57,12 +59,14 @@ public class Player extends DisplayableObject {
 	
 	
 	private void idle(){
+		hitting = false;
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		setImageDisplayed(images.get(0));
 		stateCounter = 0;
 	}
 		
-	private void step(){		
+	private void step(){
+		hitting = false;
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if((stateCounter >= 0) && (stateCounter < 19)){
@@ -75,15 +79,18 @@ public class Player extends DisplayableObject {
 	}
 	
 	private void movementRight(){
+		hitting = false;
 		step();
 		originX += speed;
 	}
 	private void movementLeft(){
+		hitting = false;
 		step();
 		originX -= speed;
 	}
 	
 	private void attackingHigh(){
+		hitting = (stateCounter == 5);
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if((stateCounter >= 0) && (stateCounter < 5)){
@@ -95,13 +102,14 @@ public class Player extends DisplayableObject {
 		}else{
 			setImageDisplayed(images.get(0));
 			attackComplete = true;
-			
+			stateCounter = 0;
 			currentState = PlayerState.IDLE;
 		}
 	}
 	
 	private void attackingLow(){
-ArrayList<Bitmap> images = playerImages.get(dinoType);
+		hitting = (stateCounter == 5);
+		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if((stateCounter >= 0) && (stateCounter < 5)){
 			setImageDisplayed(images.get(3));
@@ -112,7 +120,7 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 		}else{
 			setImageDisplayed(images.get(0));
 			attackComplete = true;
-			
+			stateCounter = 0;
 			currentState = PlayerState.IDLE;
 		}
 	}
@@ -139,7 +147,11 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 			}
 		}
 
-	}	
+	}
+	
+	public boolean isHitting() {
+		return hitting;
+	}
 	
 	public void forceIdle(){
 		buttonPressed = false;
@@ -174,8 +186,13 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 		return !attackComplete;
 	}
 
-	protected double getCenteredX() {
-		return originX + scaleX*240;
+	protected int getCenteredX() {
+		return (int) (originX + scaleX*240);
+	}
+
+
+	public void setRelativeX(int i) {
+		originX += i;		
 	}
 	
 }
