@@ -95,6 +95,8 @@ public class Player extends DisplayableObject {
 		}else{
 			setImageDisplayed(images.get(0));
 			attackComplete = true;
+			
+			currentState = PlayerState.IDLE;
 		}
 	}
 	
@@ -110,6 +112,8 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 		}else{
 			setImageDisplayed(images.get(0));
 			attackComplete = true;
+			
+			currentState = PlayerState.IDLE;
 		}
 	}
 
