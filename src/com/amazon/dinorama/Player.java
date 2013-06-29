@@ -1,72 +1,117 @@
 package com.amazon.dinorama;
 
-import android.graphics.Rect;
+import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Player {
-	private int health = 100;
-	private int dinoType = 0;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+public class Player extends DisplayableObject {
+	//Images
+	private HashMap<Integer, ArrayList<Bitmap>> playerImages;
 	
-	private boolean facingRight = true;
+	private void initImageMap(){
+		playerImages = new HashMap<Integer, ArrayList<Bitmap>>();
+		Bitmap idle, step1, step2, hA1, hA2, lA1, lA2, hB, lB;
+		if(dinoType == 1){
+			playerImages.put(Integer.valueOf(1), new ArrayList<Bitmap>());
+			idle = BitmapFactory.decodeResource(res, R.drawable.stego_1);
+			hA1 = BitmapFactory.decodeResource(res, R.drawable.stego_2);
+			hA2 = BitmapFactory.decodeResource(res, R.drawable.stego_3);
+			lA1 = BitmapFactory.decodeResource(res, R.drawable.stego_4);
+			lA2 = BitmapFactory.decodeResource(res, R.drawable.stego_5);
+			step1 = BitmapFactory.decodeResource(res, R.drawable.stego_6);
+			step2 = BitmapFactory.decodeResource(res, R.drawable.stego_7);
+			
+			playerImages.get(dinoType).add(idle);
+			playerImages.get(dinoType).add(hA1);
+			playerImages.get(dinoType).add(hA2);
+			playerImages.get(dinoType).add(lA1);
+			playerImages.get(dinoType).add(lA2);
+			playerImages.get(dinoType).add(step1);
+			playerImages.get(dinoType).add(step2);
+			
+			//Add Blocking
+		}
+		
+	}
 	
-	private int width = 50;
-	private int height = 50;
-	private Rect positionBox;	
-	
+	//Constants
 	private final int speed = 5;
 	
-	public Player(int dinoType, 
-				boolean facingRight,
-				int originX,
-				int originY){
-		
-		//Origin is centerX, centerY
-		int widthOffSet = width/2;
-		int heightOffSet = height/2;
-		
-		int left = originX-widthOffSet;
-		int right = originX+widthOffSet;
-		int up = originY+heightOffSet;
-		int down = originY-heightOffSet;
-		
-		Rect sizeAndPosition = new Rect(left, up, right, down);
-		
-		this.facingRight = facingRight;
+	//Stats
+	private int dinoType = 1;
+	private int health = 100;
+
+	//State
+	private PlayerState currentState = PlayerState.IDLE;
+	private int stateCounter = 0;
+	
+	public Player(int dinoType, Resources res, int originX, int originY){
+		super(res, originX, originY);
 		this.dinoType = dinoType;
-		this.positionBox = sizeAndPosition;
+		initImageMap();
 	}
 	
-	public void moveRight(double deltaTime){
-		int offset = (int) (speed*deltaTime);
-		positionBox.offset(offset, 0);		
+	
+	public void idle(){
+		ArrayList<Bitmap> images = playerImages.get(dinoType);
+		setImageDisplayed(images.get(1));
+		stateCounter = 0;
 	}
 	
-	public void moveLeft(double deltaTime){
-		int offset = (int) (speed*deltaTime);
-		positionBox.offset(-offset, 0);		
+	public void step(){
+		ArrayList<Bitmap> images = playerImages.get(dinoType);
+		
+		if(stateCounter == 0){
+			setImageDisplayed(images.get(5));
+		}else if(stateCounter == 10){
+			setImageDisplayed(images.get(6));
+		}else if(stateCounter == 20){
+			stateCounter = 0;
+			currentState = PlayerState.IDLE;
+		}
 	}
 	
-	public void flipPlayer(){
-		facingRight = false;
+	public void movementRight(){
+		step();
+		originX += speed;
+	}
+	public void movementLeft(){
+		step();
+		originY -= speed;
 	}
 	
-	public Rect getPosition(){
-		return positionBox;
+	public void update(){
+		stateCounter++;
+		if(currentState == PlayerState.IDLE){
+			idle();
+		}else if(currentState == PlayerState.MOVERIGHT){
+			movementRight();
+		}else if(currentState == PlayerState.MOVELEFT){
+			movementLeft();
+		}else if(currentState == PlayerState.HIGHATTACK){
+			
+		}else if(currentState == PlayerState.LOWATTACK){
+			
+		}else if(currentState == PlayerState.LOWBLOCK){
+			
+		}else if(currentState == PlayerState.HIGHBLOCK){
+			
+		}
+	}	
+	
+	public void moveRight(){
+		currentState = PlayerState.MOVERIGHT;
 	}
 	
-	//For attacks, getPosition() then add (for right) say 50 pixels ahead or for left 50 pixels behind
-	public PlayerState attackHigh(){
-		return PlayerState.HIGHATTACK;
+	public void moveLeft(){
+		currentState = PlayerState.MOVELEFT;
 	}
 	
-	public PlayerState attackLow(){
-		return PlayerState.LOWATTACK;
-	}
 	
-	public PlayerState blockHigh(){
-		return PlayerState.HIGHBLOCK;
-	}
+	//hitting buttons changes state and resolves state conflicts
 	
-	public PlayerState blockLow(){
-		return PlayerState.LOWBLOCK;
-	}
+
 }
