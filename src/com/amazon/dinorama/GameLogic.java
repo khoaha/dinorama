@@ -12,8 +12,8 @@ public class GameLogic {
 	
 	public void update(){
 		userAttacks();
-		aiAttacks();
-		checkOrientation();
+		//aiAttacks();
+		//checkOrientation();
 		
 		System.out.println("AIH:"+GlobalVariables.AIHealth);
 	}
@@ -21,43 +21,60 @@ public class GameLogic {
 	public void userAttacks(){
 		if(user.isAttacking()){
 			if(!ai.isAttacking()){
-				int displacement = Math.abs(ai.getX() - user.getX());
-				if(displacement < hitBoxDistance){
-					GlobalVariables.AIHealth -= 10;
+				int displacement = Math.abs((ai.getX() - user.getX()));
+				if(displacement < hitBoxDistance){					
+					if(GlobalVariables.AIHealth > 0){
+						GlobalVariables.AIHealth -= 10;
+					}else{
+						GlobalVariables.gameResult = 1;
+					}
 				}
 			}
 		}
 	}
 	
+	/*
 	public void aiAttacks(){
 		if(ai.isAttacking()){
 			if(!user.isAttacking()){
-				int displacement = Math.abs(ai.getX() - user.getX());
+				int displacement = Math.abs((ai.getX() - user.getX()));
 				if(displacement < hitBoxDistance){
-					GlobalVariables.playerHealth -= 10;
+					if(GlobalVariables.playerHealth > 0){
+						GlobalVariables.playerHealth -= 10;
+					}else{
+						GlobalVariables.gameResult = 2;
+					}				
 				}
 			}
 		}
-	}
-	
+	}*/
+	/*
 	//should be called on update
 	public void checkOrientation(){
-		if(user.getX() < ai.getX()){
+		if(user.getCenteredX() < ai.getCenteredX()){
+			
 			if(user.getScaleX() == -1){
 				user.setXScale(1);
+				user.setRelativeX(480);
 			}
 			if(ai.getScaleX() == 1){
 				ai.setXScale(-1);
+				user.setRelativeX(-480);
 			}
+			
 		}else{
+			
 			if(user.getScaleX() == 1){
 				user.setXScale(-1);
+				user.setRelativeX(-480);
 			}
 			if(ai.getScaleX() == -1){
 				ai.setXScale(1);
+				user.setRelativeX(480);
 			}
+			
 		}
-	}
+	}*/
 	
 	
 	
