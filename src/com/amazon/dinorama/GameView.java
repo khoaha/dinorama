@@ -85,7 +85,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
 //				objects.add(new TestItem(res, (int)(Math.random()*1280), (int)(Math.random()*800)));
 			DisplayableObject bg = new DisplayableObject(res, 0, 0);
 			bg.setImageDisplayed(LevelBitmapWrapper.bitmap);
-			bg.setScale(1.667);
+			bg.setScale(3.334);
 			objects.add(bg);
 			objects.add(player);
 			objects.add(enemy);

@@ -33,35 +33,35 @@ public class LevelSelectActivity extends Activity {
 	}
 	
 	public void pickedLevelOne(View view){
-		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_1), 480); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_1), 240); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelTwo(View view){
-		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_2), 480); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_2), 240); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelThree(View view){
-		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_3), 480); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_3), 240); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFour(View view){
-		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_4), 480); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_4), 240); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		song.stop();
     	LevelSelectActivity.this.startActivity(myIntent);
 	}
 	public void pickedLevelFive(View view){
-		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_5), 480); //change this to R.drawable.LEVEL_NAME
+		LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_5), 240); //change this to R.drawable.LEVEL_NAME
 		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
 		myIntent.putExtra("game_mode", mode);
 		song.stop();
@@ -89,11 +89,8 @@ public class LevelSelectActivity extends Activity {
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             String picturePath = cursor.getString(columnIndex);
             cursor.close();
-             
-            ImageView imageView = (ImageView) findViewById(R.id.imgView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
             
-            LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeFile(picturePath), 480);
+            LevelBitmapWrapper.bitmap = scaleDownBitmap(BitmapFactory.decodeFile(picturePath), 240);
             
             Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
     		myIntent.putExtra("game_mode", mode);
