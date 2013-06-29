@@ -2,37 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="@drawable/main_menu_background" >
 
     <ImageButton
-        android:id="@+id/newCampaignButton"
+        android:id="@+id/imageButton1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginBottom="138dp"
-        android:layout_marginLeft="180dp"
-        android:src="@android:drawable/ic_input_add"
-        android:onClick="pickCampaignMode" />
-
-    <ImageButton
-        android:id="@+id/newArcadeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@+id/newCampaignButton"
-        android:layout_marginRight="245dp"
-        android:src="@android:drawable/ic_menu_delete"
-        android:onClick="pickArcadeMode" />
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/newArcadeButton"
-        android:layout_marginBottom="115dp"
-        android:layout_marginRight="113dp"
-        android:layout_toLeftOf="@+id/newArcadeButton"
-        android:src="@drawable/ic_launcher" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:onClick="pickArcadeMode"
+        android:src="@drawable/arcade_button" />
 
 </RelativeLayout>

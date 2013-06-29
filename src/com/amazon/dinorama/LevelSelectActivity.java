@@ -28,6 +28,43 @@ public class LevelSelectActivity extends Activity {
 
 	}
 	
+	public void pickedLevelOne(View view){
+		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+		myIntent.putExtra("game_mode", mode);
+    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    	LevelSelectActivity.this.startActivity(myIntent);
+	}
+	public void pickedLevelTwo(View view){
+		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+		myIntent.putExtra("game_mode", mode);
+    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    	LevelSelectActivity.this.startActivity(myIntent);
+	}
+	public void pickedLevelThree(View view){
+		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+		myIntent.putExtra("game_mode", mode);
+    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    	LevelSelectActivity.this.startActivity(myIntent);
+	}
+	public void pickedLevelFour(View view){
+		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+		myIntent.putExtra("game_mode", mode);
+    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    	LevelSelectActivity.this.startActivity(myIntent);
+	}
+	public void pickedLevelFive(View view){
+		Bitmap levelBitmap = BitmapFactory.decodeResource(this.getResources(), R.drawable.tempbg); //change this to R.drawable.LEVEL_NAME
+		Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+		myIntent.putExtra("game_mode", mode);
+    	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+    	LevelSelectActivity.this.startActivity(myIntent);
+	}
+
+	
 	public void getUserPhoto(View view){
 		Intent i = new Intent( Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(i, RESULT_LOAD_IMAGE);  
@@ -51,7 +88,14 @@ public class LevelSelectActivity extends Activity {
              
             ImageView imageView = (ImageView) findViewById(R.id.imgView);
             imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-         
+            
+            Bitmap levelBitmap = BitmapFactory.decodeFile(picturePath);
+            
+            Intent myIntent = new Intent(LevelSelectActivity.this, GameActivity.class);
+    		myIntent.putExtra("game_mode", mode);
+        	myIntent.putExtra("level_bitmap", levelBitmap); //Optional parameters
+        	LevelSelectActivity.this.startActivity(myIntent);
+            
         }
      
      

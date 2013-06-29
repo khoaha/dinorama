@@ -1,27 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:src="@android:drawable/btn_plus" />
-
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageView1"
-        android:layout_marginRight="71dp"
-        android:layout_marginTop="77dp"
-        android:layout_toLeftOf="@+id/imageView1"
-        android:src="@android:drawable/btn_star"
-        android:onClick="pickedDinoOne" />
+    android:layout_height="match_parent"
+    android:background="@drawable/characterselect" >
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -30,18 +11,8 @@
         android:layout_alignLeft="@+id/imageButton1"
         android:layout_below="@+id/imageButton1"
         android:layout_marginTop="99dp"
-        android:src="@android:drawable/btn_star_big_on"
-        android:onClick="pickedDinoTwo" />
-
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_marginLeft="60dp"
-        android:layout_toRightOf="@+id/imageView1"
-        android:src="@android:drawable/btn_star"
-        android:onClick="pickedDinoThree" />
+        android:onClick="pickedDinoTwo"
+        android:src="@android:drawable/btn_star_big_on" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -49,7 +20,28 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageButton2"
         android:layout_alignTop="@+id/imageButton3"
-        android:src="@android:drawable/ic_menu_week"
-        android:onClick="pickedDinoFour" />
+        android:onClick="pickedDinoFour"
+        android:src="@android:drawable/ic_menu_week" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginRight="158dp"
+        android:layout_marginTop="201dp"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:onClick="pickedDinoOne"
+        android:src="@android:drawable/btn_star" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/imageButton3"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="254dp"
+        android:onClick="pickedDinoThree"
+        android:src="@android:drawable/btn_star" />
 
 </RelativeLayout>
