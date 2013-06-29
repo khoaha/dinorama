@@ -7,11 +7,15 @@ public class DisplayableObject {
 	Bitmap imageDisplayed;
 	int originX;
 	int originY;
+	double scaleX;
+	double scaleY;
 	Resources res;
 	
 	public DisplayableObject(Resources res, int originX, int originY){
 		this.originX = originX;
 		this.originY = originY;
+		this.scaleX = 1;
+		this.scaleY = 1;
 	}
 	
 	public void setImageDisplayed(Bitmap bitmap){

@@ -55,13 +55,13 @@ public class Player extends DisplayableObject {
 	}
 	
 	
-	public void idle(){
+	private void idle(){
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		setImageDisplayed(images.get(1));
 		stateCounter = 0;
 	}
 	
-	public void step(){
+	private void step(){
 		ArrayList<Bitmap> images = playerImages.get(dinoType);
 		
 		if(stateCounter == 0){
@@ -74,11 +74,11 @@ public class Player extends DisplayableObject {
 		}
 	}
 	
-	public void movementRight(){
+	private void movementRight(){
 		step();
 		originX += speed;
 	}
-	public void movementLeft(){
+	private void movementLeft(){
 		step();
 		originY -= speed;
 	}
