@@ -20,13 +20,14 @@ public class TouchButton extends DisplayableObject {
 
 	public TouchButton(Resources res, int originX, int originY, TouchButtonDirection dir) {
 		super(res, originX, originY);
+		type = dir;
 		int image;
-		switch(dir) {
-		case HI_ATK: image = R.drawable.arrow_up;
-		case LO_ATK: image = R.drawable.arrow_down;
-		case HI_BLK: image = R.drawable.arrow_hi;
-		case LO_BLK: image = R.drawable.arrow_lo;
-		case LEFT: image = R.drawable.arrow_left;
+		switch(type) {
+		case HI_ATK: image = R.drawable.arrow_up; break;
+		case LO_ATK: image = R.drawable.arrow_down; break;
+		case HI_BLK: image = R.drawable.arrow_hi; break;
+		case LO_BLK: image = R.drawable.arrow_lo; break;
+		case LEFT: image = R.drawable.arrow_left; break;
 		default: image = R.drawable.arrow_right;
 		}
 		setImageDisplayed(BitmapFactory.decodeResource(res, image));
@@ -36,4 +37,7 @@ public class TouchButton extends DisplayableObject {
 		return (x >= originX && x <= originX+size && y >= originY && y <= originY+size);
 	}
 	
+	public String toString() {
+		return type.name();
+	}
 }
