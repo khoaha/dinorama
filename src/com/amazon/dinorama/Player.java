@@ -174,6 +174,10 @@ ArrayList<Bitmap> images = playerImages.get(dinoType);
 		return !attackComplete;
 	}
 
+	protected double getCenteredX() {
+		return originX + scaleX*240;
+	}
+	
 }
 
 //check distance
